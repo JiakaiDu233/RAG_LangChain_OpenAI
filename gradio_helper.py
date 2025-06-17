@@ -2,7 +2,7 @@ from typing import Callable
 import gradio as gr
 
 
-# FLSA相关示例问题
+# FLSA related examples
 flsa_examples = [
     ["What are the main provisions of the Fair Labor Standards Act?"],
     ["How should supervisors handle accurate timekeeping?"],
@@ -28,12 +28,12 @@ def handle_user_message(message, history):
       None
     """
     # Append the user's message to the conversation history
-    # 支持新的messages格式
+    # Support new messages format
     if isinstance(history, list) and len(history) > 0 and isinstance(history[0], dict):
-        # 新的messages格式
+        # new messages format
         return "", history + [{"role": "user", "content": message}, {"role": "assistant", "content": ""}]
     else:
-        # 旧的tuples格式（向后兼容）
+        # tuples format (backward compatibility)
         return "", history + [(message, "")] 
 
 
@@ -45,10 +45,10 @@ def make_demo(
     model_name: str,
     language: str = "English",
 ):
-    # 使用FLSA示例问题
+    # Use FLSA examples
     examples = flsa_examples
 
-    # 使用EllerDocs-FLSA文件夹中的所有文档
+    # Use all documents in EllerDocs-FLSA folder
     flsa_files = [
         "EllerDocs-FLSA/Accurate Timekeeping Supervisors 12.2.20_AH edits.docx",
         "EllerDocs-FLSA/Eller FLSA information 9.2024_AH edits.docx",
